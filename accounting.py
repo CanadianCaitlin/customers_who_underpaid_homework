@@ -6,88 +6,81 @@
 #elif customer payment is less than code, return print statement
 #else pass
 
-melon_cost = 1.00
+MELON_COST = 1.00
 
 def customer_payment(payment_file):
     payment_data = open(payment_file)
+
     for line in payment_data:
         order = line.split('|')
         customer_name = order[1]
-        customer_melons = int(order[2])
+        customer_melons = float(order[2])
         customer_paid = float(order[3])
 
-        correct_cost = customer_melons * melon_cost
+        correct_cost = customer_melons * MELON_COST
         payment_owed = correct_cost - customer_paid
         over_payment = customer_paid - correct_cost
 
-        if correct_cost < customer_paid:
-            return print(f"{customer_name} paid ${customer_paid}, but the correct cost is ${correct_cost}. The customer needs to pay ${payment_owed}.")
+        if correct_cost > customer_paid:
+            print(f"{customer_name} paid ${customer_paid}, but the correct cost is ${correct_cost}. The customer needs to pay ${payment_owed}.")
 
-        elif correct_cost > customer_paid:
-            return print("{customer_name} paid ${customer_paid}, but the correct cost is ${correct_cost}. The customer needs to recieve ${over_payment}.")
+        elif correct_cost < customer_paid:
+            print(f"{customer_name} paid ${customer_paid}, but the correct cost is ${correct_cost}. The customer needs to recieve ${over_payment}.")
 
         else:
             pass
+
     payment_file.close()
 
 customer_payment("customer-orders.txt")
 
+# MELON_COST = 1.00
 
-# customer1_name = "Joe"
-# customer1_melons = 5
-# customer1_paid = 5.00
 
-# customer2_name = "Frank"
-# customer2_melons = 6
-# customer2_paid = 6.00
+# def print_payment_status(payment_data_filename):
+#     """Calculate cost of melons and determine who has underpaid."""
 
-# customer3_name = "Sally"
-# customer3_melons = 3
-# customer3_paid = 3.00
+#     payment_data = open(payment_data_filename) # open the file
 
-# customer4_name = "Sean"
-# customer4_melons = 9
-# customer4_paid = 9.50
+#     # Iterate over lines in file
+#     for line in payment_data:
+#         # Split line by '|' to get a list of strings
+#         order = line.split('|')
 
-# customer5_name = "David"
-# customer5_melons = 4
-# customer5_paid = 4.00
+#         # Get customer's full name
+#         full_name = order[1]
 
-# customer6_name = "Ashley"
-# customer6_melons = 3
-# customer6_paid = 2.00
+#         # Split `customer_name` by space (' ') to get
+#         # a list of [first_name, last_name].
+#         #
+#         # Then, assign first name (at index 0) to `customer_first`
+#         first_name = full_name.split(" ")[0]
 
-# customer1_expected = customer1_melons * melon_cost
-# if customer1_expected != customer1_paid:
-#     print(f"{customer1_name} paid ${customer1_paid:.2f},",
-#           f"expected ${customer1_expected:.2f}"
-#           )
+#         # Get no. of melons in the order and amount customer paid
+#         melons_qty = float(order[2])  # also ok to typecast melons_qty as an int
+#         amt_paid = float(order[3])
 
-# customer2_expected = customer2_melons * melon_cost
-# if customer2_expected != customer2_paid:
-#     print(f"{customer2_name} paid ${customer2_paid:.2f},",
-#           f"expected ${customer2_expected:.2f}"
-#           )
+#         # Calculate expected price of customer's order
+#         expected_price = melons_qty * MELON_COST
 
-# customer3_expected = customer3_melons * melon_cost
-# if customer3_expected != customer3_paid:
-#     print(f"{customer3_name} paid ${customer3_paid:.2f},",
-#           f"expected ${customer3_expected:.2f}"
-#           )
+#         # Print general payment info
+#         print(f"{full_name} paid ${amt_paid:.2f}, expected",
+#               f"${expected_price:.2f}")
 
-# customer4_expected = customer4_melons * melon_cost
-# if customer4_expected != customer4_paid:
-#     print(f"{customer4_name} paid ${customer4_paid:.2f},",
-#           f"expected ${customer4_expected:.2f}"
-#           )
+#         # Print payment status
+#         #
+#         # If customer overpaid, print that they've overpaid for their melons. If
+#         # customer underpaid, print that they've underpaid for their melons.
+#         if expected_price < amt_paid:
+#             print(f"{first_name} has overpaid for their melons.")
 
-# customer5_expected = customer5_melons * melon_cost
-# if customer5_expected != customer5_paid:
-#     print(f"{customer5_name} paid ${customer5_paid:.2f},",
-#           f"expected ${customer5_expected:.2f}"
-#           )
+#         elif expected_price > amt_paid:
+#             print(f"{first_name} has underpaid for their melons.")
 
-# customer6_expected = customer6_melons * melon_cost
-# if customer6_expected != customer6_paid:
-#     print(f"{customer6_name} paid ${customer6_paid:.2f},",
-#           f"expected ${customer6_expected:.2f}"
+#     # Close the file
+#     payment_data.close()
+
+
+# # Call the function
+# print_payment_status("customer-orders.txt")
+ 

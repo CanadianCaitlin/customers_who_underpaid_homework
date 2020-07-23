@@ -1,4 +1,11 @@
 
+#create function takes parameter: order txt file
+#open file
+#loop in file to seperate strings
+#if customer payment is greater than cost, return print statement
+#elif customer payment is less than code, return print statement
+#else pass
+
 melon_cost = 1.00
 
 customer1_name = "Joe"
